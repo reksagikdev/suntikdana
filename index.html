@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Form Data Pengiriman</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter',sans-serif;
+}
+
+body{
+    margin:0;
+    background: url("bg/gambar1.jpg") center/cover no-repeat;
+    font-family:'Inter',sans-serif;
+
+    display:flex;
+    flex-direction:column;   
+    justify-content:flex-start;
+    align-items:center;
+
+    min-height:100vh;
+    padding:25px;
+}
+
+.container{
+    width:100%;
+    background: url("bg/gambar33.jpg")center;
+    border-radius:24px;
+	border:1px solid #3b82f6;
+    padding:28px;
+    box-shadow:
+    0 10px 35px rgba(0,0,0,.08);
+}
+
+.input-box{
+    height:250px;
+    background:#0b1220;
+    border:1px solid #3b82f6;
+    border-radius:18px;
+
+    margin-bottom:28px;
+}
+
+.input-box textarea{
+    width:100%;
+    height:100%;
+    border:none;
+    outline:none;
+    resize:none;
+    background:transparent;
+	color:white;
+
+    font-size:18px;
+    text-align:center;
+    padding:20px;
+	overflow-y:auto;
+}
+
+.table-box{
+    overflow:hidden;
+    border:1px solid #3b82f6;
+    border-radius:18px;
+    margin-bottom:24px;
+}
+
+.table-row{
+    display:grid;
+    grid-template-columns:2fr 1.5fr 1fr 1.5fr;
+}
+
+.header{
+    background:linear-gradient(
+        135deg,
+        #1e293b,
+        #334155
+    );
+    color:white;
+}
+
+.header .cell{
+    min-height:50px;
+    font-weight:700;
+    letter-spacing:.5px;
+	background:#0b1220;
+	 white-space:nowrap;
+}
+
+.cell{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
+}
+
+.cell:not(:last-child){
+    border-right:2px solid #dbe3ee;
+}
+
+.data .cell{
+    min-height:130px;
+    background:white;
+	align-items:center;
+	justify-content:center;
+}
+
+.data input,
+.data select{
+    width:95%;
+    height:48px;
+    border:2px solid #dbe3ee;
+    border-radius:12px;
+    padding:0 14px;
+    font-size:15px;
+    outline:none;
+    transition:.25s;
+}
+
+.data input:focus,
+.data select:focus{
+    border-color:#3b82f6;
+    box-shadow:0 0 0 4px rgba(59,130,246,.12);
+}
+
+.button-area{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+}
+
+.btn{
+    position:relative;
+    overflow:hidden;
+
+    border:none;
+    height:50px;
+    padding:0 30px;
+
+    border-radius:14px;
+	border:1px solid #3b82f6;
+
+    color:#fff;
+    font-weight:700;
+    font-size:15px;
+    letter-spacing:.3px;
+
+    cursor:pointer;
+
+    background:linear-gradient(135deg,#1e3a8a,#0ea5e9);
+
+    box-shadow:
+    0 8px 20px rgba(37,99,235,.25);
+
+    transition:.3s;
+}
+
+.btn:hover{
+    
+    box-shadow:
+    0 14px 28px rgba(37,99,235,.35);
+}
+
+.btn:active{
+    transform:translateY(-1px);
+}
+
+.btn::before{
+    content:"";
+    position:absolute;
+
+    top:-50%;
+    left:-120%;
+
+    width:25px;
+    height:200%;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.9),
+        transparent
+    );
+
+    transform:rotate(20deg);
+
+    animation:shine 2.8s linear infinite;
+}
+
+.btn.copied{
+    background:linear-gradient(
+        135deg,
+        #16a34a,
+        #22c55e,
+        #86efac
+    );
+
+    box-shadow:
+    0 8px 20px rgba(34,197,94,.35);
+}
+
+@keyframes shine{
+    from{
+        left:-120%;
+    }
+    to{
+        left:130%;
+    }
+}
+
+.btn::after{
+    content:"";
+    position:absolute;
+
+    top:1px;
+    left:-100%;
+
+    width:100%;
+    height:1px;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.9),
+        transparent
+    );
+
+    filter:blur(.5px);
+
+    animation:lineMove 2.5s linear infinite;
+}
+
+@keyframes lineMove{
+    from{
+        left:-100%;
+    }
+    to{
+        left:100%;
+    }
+}
+
+.button-area{
+    display:flex;
+    justify-content:center;
+    gap:18px;
+    margin-top:8px;
+}
+
+.title-box{
+    text-align:center;
+    margin-bottom:22px;
+
+    font-size:38px;
+    font-weight:900;
+    letter-spacing:2px;
+    text-transform:uppercase;
+
+    color:#ffffff;
+    text-shadow:0 2px 8px rgba(0,0,0,0.6);
+}
+
+.title-box::after{
+    content:"";
+    display:block;
+
+    width:260px;
+    height:3px;
+
+    margin:1px auto 0;
+
+    border-radius:999px;
+
+     background:linear-gradient(
+        90deg,
+        transparent,
+        #60a5fa,
+        #ffffff,
+        #60a5fa,
+        transparent
+    );
+
+    box-shadow:
+        0 0 10px rgba(96,165,250,0.7),
+        0 0 18px rgba(255,255,255,0.35);
+}
+
+.nominal-display{
+    width:95%;
+    height:120px;
+    padding:10px;
+    border-radius:12px;
+
+    overflow-y:auto;
+    white-space:pre-line;
+
+    display:block;
+    text-align:center;
+}
+
+.brand{
+    
+    margin-top: 15px;
+    text-align: center;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(96,165,250,0.8);
+    font-size: 11px;
+    font-weight: bold;
+}
+
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+    <div class="title-box">
+        SUNTIK DANA
+    </div>
+
+    <div class="container">
+
+    <div class="input-box">
+    <textarea placeholder="Masukkan Data"></textarea>
+</div>
+
+    <div class="table-box">
+
+        <div class="table-row header">
+            <div class="cell">NAMA PENGIRIM</div>
+            <div class="cell">BANK PENGIRIM</div>
+            <div class="cell">BIAYA ADM</div>
+			<div class="cell">NOMINAL</div>
+        </div>
+
+        <div class="table-row data">
+    <div class="cell">
+        <input type="text" placeholder="Masukkan Nama">
+    </div>
+
+    <div class="cell">
+        <select>
+            <option value="" selected>Pilih</option>
+            <option>BCA</option>
+            <option>BRI</option>
+            <option>BNI</option>
+            <option>MANDIRI</option>
+        </select>
+    </div>
+
+    <div class="cell">
+        <select>
+            <option value="" selected>Pilih</option>
+            <option>2.500</option>
+            <option>6.500</option>
+        </select>
+    </div>
+
+    
+    <div class="cell">
+    <div id="nominalDisplay" class="nominal-display">-</div>
+</div>
+</div>
+
+    </div>
+
+    <div class="button-area">
+    <button class="btn" data-type="data">COPY DATA</button>
+    <button class="btn" data-type="excel">COPY KET</button>
+    <button class="btn" data-type="nominal">COPY NOM</button>
+</div>
+
+    </div>
+</div>
+
+<div class="brand">
+    © 2026 | BY YOGIK
+	
+</div>
+<script>
+
+const buttons = document.querySelectorAll('.btn');
+const textarea = document.querySelector('.input-box textarea');
+const nominalDisplay = document.getElementById('nominalDisplay');
+
+const namaInput = document.querySelector('input');
+const bankSelect = document.querySelectorAll('select')[0];
+const admSelect = document.querySelectorAll('select')[1];
+
+buttons.forEach(btn => {
+
+    const originalText = btn.textContent;
+
+    btn.addEventListener('click', async () => {
+
+        try{
+
+            let hasil = '';
+
+            if(btn.dataset.type === 'data'){
+
+                const namaPengirim = namaInput.value.trim().toUpperCase();
+                const bankPengirim = bankSelect.value;
+                const biayaAdm = parseInt(
+                    admSelect.value.replace(/\./g,'')
+                ) || 0;
+
+                const lines = textarea.value
+                    .split('\n')
+                    .map(v => v.trim())
+                    .filter(v => v);
+
+                hasil = 'MINITOTO SUNTIK DANA\n\n';
+
+                for(let i = 1; i < lines.length; i += 3){
+
+                    const tujuan = lines[i];
+                    const nominal = lines[i + 2];
+
+                    if(!tujuan || !nominal) continue;
+
+                    const total =
+                        (parseInt(
+                            nominal.replace(/\./g,'')
+                        ) || 0) + biayaAdm;
+
+                    hasil +=
+`${bankPengirim} ${namaPengirim} KE ${tujuan}
+${total.toLocaleString('id-ID')}
+
+`;
+                }
+
+            }else if(btn.dataset.type === 'nominal'){
+
+    const lines = textarea.value
+        .split('\n')
+        .map(v => v.trim())
+        .filter(v => v);
+
+    const nominalList = [];
+
+    for(let i = 1; i < lines.length; i += 3){
+
+        const nominal = lines[i + 2];
+
+        if(!nominal) continue;
+
+        nominalList.push(
+            nominal.replace(/\./g,'')
+        );
+    }
+
+    hasil = nominalList.join('\n');
+
+}else{
+
+    const namaPengirim = namaInput.value.trim().toUpperCase();
+    const bankPengirim = bankSelect.value;
+
+    const lines = textarea.value
+        .split('\n')
+        .map(v => v.trim())
+        .filter(v => v);
+
+    const excelRows = [];
+
+    for(let i = 1; i < lines.length; i += 3){
+
+        const tujuan = lines[i];
+        const nominal = lines[i + 2];
+
+        if(!tujuan || !nominal) continue;
+
+        excelRows.push(
+    `SUNTIK DANA DARI TAMPUNGAN / ${bankPengirim} ${namaPengirim}\t\tSuntik Dana`
+);
+
+    }
+
+    hasil = excelRows.join('\n');
+
+}
+
+            await navigator.clipboard.writeText(hasil);
+
+            btn.classList.add('copied');
+            btn.textContent = '✓ TERCOPY';
+
+            setTimeout(() => {
+                btn.classList.remove('copied');
+                btn.textContent = originalText;
+            }, 2000);
+
+        }catch(err){
+
+            alert('Gagal menyalin data');
+
+        }
+
+    });
+
+});
+
+textarea.addEventListener('input', () => {
+
+    const lines = textarea.value
+        .split('\n')
+        .map(v => v.trim())
+        .filter(v => v);
+
+    const hasil = [];
+
+    for (let i = 1; i < lines.length; i += 3) {
+        const nominal = lines[i + 2];
+
+        if (nominal) {
+            hasil.push(nominal.replace(/\./g,''));
+        }
+    }
+
+    nominalDisplay.textContent = hasil.length ? hasil.join('\n') : '-';
+
+});
+
+</script>
+
+</body>
+
+</body>
+</html>
