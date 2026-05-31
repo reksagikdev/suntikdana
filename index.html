@@ -425,9 +425,9 @@ buttons.forEach(btn => {
                     if(!tujuan || !nominal) continue;
 
                     const total =
-                        (parseInt(
-                            nominal.replace(/\./g,'')
-                        ) || 0) + biayaAdm;
+    (parseInt(
+        nominal.replace(/[.,]/g,'')
+    ) || 0) + biayaAdm;
 
                     hasil +=
 `${bankPengirim} ${namaPengirim} KE ${tujuan}
@@ -452,8 +452,8 @@ ${total.toLocaleString('id-ID')}
         if(!nominal) continue;
 
         nominalList.push(
-            nominal.replace(/\./g,'')
-        );
+    nominal.replace(/[.,]/g,'')
+);
     }
 
     hasil = nominalList.join('\n');
@@ -520,7 +520,7 @@ textarea.addEventListener('input', () => {
         const nominal = lines[i + 2];
 
         if (nominal) {
-            hasil.push(nominal.replace(/\./g,''));
+            hasil.push(nominal.replace(/[.,]/g,''));
         }
     }
 
