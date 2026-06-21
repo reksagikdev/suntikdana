@@ -340,10 +340,10 @@ th{
     </select>
 
     <select id="globalAdm">
-        <option value="">ADM</option>
-        <option value="2500">2.500</option>
-        <option value="6500">6.500</option>
-    </select>
+    <option value="0">TANPA ADM</option>
+    <option value="2500">2.500</option>
+    <option value="6500">6.500</option>
+</select>
 </div>
 
 <div class="box" id="tableBox" style="display:none;">
@@ -428,8 +428,9 @@ let jumlahData = 0;
 
 <td>
 <select class="adm-row">
-<option value="2500" ${gAdm==2500?"selected":""}>2500</option>
-<option value="6500" ${gAdm==6500?"selected":""}>6500</option>
+    <option value="0" ${gAdm==0?"selected":""}>-</option>
+    <option value="2500" ${gAdm==2500?"selected":""}>2500</option>
+    <option value="6500" ${gAdm==6500?"selected":""}>6500</option>
 </select>
 </td>
 
